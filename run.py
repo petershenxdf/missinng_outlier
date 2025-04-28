@@ -1,0 +1,7 @@
+# run.py
+from backend import create_app
+
+app = create_app()
+
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=False)      # flask --app run.py run   also works

@@ -1,0 +1,60 @@
+/* ─────────────────────────  base page  ─────────────────────────── */
+body {
+  font-family: sans-serif;
+  margin: 20px;
+}
+
+/* ────────────────────────  main layout  ────────────────────────── */
+#scatterplot {
+  float: left;
+}
+
+#table-container {
+  float: left;
+  margin-left: 30px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+#bar-chart {
+  clear: both;
+  margin-top: 30px;
+}
+
+/* ────────────────────────  table look  ─────────────────────────── */
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+}
+
+tr:hover {
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+/* ───────────────────  NEW: projection buttons  ─────────────────── */
+#method-bar button {
+  margin-right: 4px;
+  padding: 4px 10px;
+  border: 1px solid #999;
+  background: #eee;
+  cursor: pointer;
+}
+
+#method-bar button:disabled {        /* highlight current choice */
+  background: #66c;
+  color: #fff;
+}
+
+/* NEW: reset button looks similar */
+#reset-btn {
+  padding: 4px 10px;
+  border: 1px solid #999;
+  background: #f99;
+  cursor: pointer;
+}

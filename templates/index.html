@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Missing-Value Outlier Explorer</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- D3 (ESM-friendly build) -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+  <!-- 1. CSV upload -->
+  <h1>Upload CSV</h1>
+  <form id="upload-form" enctype="multipart/form-data">
+    <input type="file" id="file-input" accept=".csv">
+    <button type="submit">Upload</button>
+  </form>
+
+  <!-- 2. Projection selector – hidden until upload succeeds -->
+  <div id="method-bar" style="display:none;">
+    <strong>Choose projection:</strong>
+    <button data-method="mds">MDS</button>
+    <button data-method="tsne">t-SNE</button>
+    <button data-method="pca">PCA</button>
+    <button data-method="isomap">Isomap</button>
+    <button data-method="umap">UMAP</button>
+    <span id="method-msg"
+          style="margin-left:1em; color:#c00;"></span>
+  </div>
+  <!-- add directly below the projection buttons -->
+<button id="reset-btn" style="display:none; margin-left:10px;">
+  Reset highlights
+</button>
+
+  <!-- 3. All visualisations -->
+  <div id="visualization" style="display:none;">
+    <h2>Scatterplot</h2>
+    <div id="scatterplot"></div>
+
+    <h2>Data Table</h2>
+    <div id="table-container"></div>
+
+    <h2>Outlierness of 5 Neighbors</h2>
+    <div id="bar-chart"></div>
+  </div>
+
+  <!-- 4. Front-end entry point (now an ES-module) -->
+  <script type="module"
+          src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
