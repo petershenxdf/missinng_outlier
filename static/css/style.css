@@ -12,9 +12,11 @@ body {
 #table-container {
   float: left;
   margin-left: 30px;
-  max-height: 500px;
+  max-height: 500px;   /* scrolling stays the same */
   overflow-y: scroll;
+  /* width now controlled by JS constant */
 }
+
 
 #bar-chart {
   clear: both;
@@ -37,7 +39,7 @@ tr:hover {
   cursor: pointer;
 }
 
-/* ───────────────────  NEW: projection buttons  ─────────────────── */
+/* ───────────────────  projection buttons  ─────────────────── */
 #method-bar button {
   margin-right: 4px;
   padding: 4px 10px;
@@ -46,15 +48,24 @@ tr:hover {
   cursor: pointer;
 }
 
-#method-bar button:disabled {        /* highlight current choice */
+#method-bar button:disabled {
   background: #66c;
   color: #fff;
 }
 
-/* NEW: reset button looks similar */
+/* reset button */
 #reset-btn {
   padding: 4px 10px;
   border: 1px solid #999;
   background: #f99;
   cursor: pointer;
 }
+
+#size-slider {
+  vertical-align: middle;
+  margin: 0 8px;
+}
+
+/* …keep original rules… */
+
+#table-container { max-width: 260px; }

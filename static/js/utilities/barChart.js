@@ -1,4 +1,4 @@
-// barChart.js
+// barChart.js – persists highlights & calls scatter update
 import { highlightPoints } from './scatterplot.js';
 import { state }           from './constants.js';
 
@@ -32,15 +32,12 @@ export function drawBarChart(neighbors, meanScore) {
        .attr('height', d => H - M - y(d.outlier_score))
        .attr('fill', d => d.id === 'Mean' ? 'green' : 'orange');
 
-  /* ⬇️ persist & highlight */
+  // persist + highlight
   state.highlighted = neighbors.map(n => n.id);
   highlightPoints(state.highlighted);
-
-  /* show the reset button now that something is highlighted */
   document.getElementById('reset-btn').style.display = 'inline-block';
 }
 
-/* helper for reset-button to clear chart */
 export function clearBarChart() {
   d3.select('#bar-chart').html('');
 }

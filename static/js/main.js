@@ -6,12 +6,12 @@ import { uploadFile,
          fetchEmbedding,
          fetchNeighbors }      from './utilities/api.js';
 
-import { drawScatter }         from './utilities/scatterplot.js';
+import { drawScatter,updatePointSize,highlightPoints}         from './utilities/scatterplot.js';
 import { drawTable }           from './utilities/table.js';
 import { drawBarChart }        from './utilities/barChart.js';
 //import { state }            from './utilities/constants.js';
 import { clearBarChart }    from './utilities/barChart.js';
-import { highlightPoints }  from './utilities/scatterplot.js';
+
 /* 1. CSV upload ----------------------------------------------------------- */
 document.getElementById('upload-form').addEventListener('submit', async e => {
   e.preventDefault();
@@ -37,11 +37,26 @@ function showUIAfterUpload() {
   buildMethodButtons();
 }
 
+/* after showUIAfterUpload() call, initialise slider */
 async function initialiseTableAndScatter() {
   const rows = await fetchTable();
   drawTable(rows, handleRowClick);
   const points = await fetchEmbedding(state.currentMethod);
   drawScatter(points);
+  initSizeSlider();           // ← new
+}
+
+function initSizeSlider() {
+  const slider = document.getElementById('size-slider');
+  const label  = document.getElementById('size-value');
+  slider.value = state.pointSize;
+  label.textContent = state.pointSize;
+  slider.addEventListener('input', (e) => {
+    const val = +e.target.value;
+    label.textContent = val;
+    state.pointSize = val;
+    updatePointSize(val);
+  });
 }
 
 /* 3. DR selector buttons -------------------------------------------------- */
@@ -76,6 +91,7 @@ async function handleRowClick(rowId) {
     console.error(err);
   }
 }
+
 
 /* 5. Reset-highlights button -------------------------------------------- */
 document.getElementById('reset-btn').addEventListener('click', () => {
